@@ -39,7 +39,7 @@ cmd:option('-type', 'test-dev2015', 'evaluation set')
 
 -- Model parameter settings (shoud be the same with the training)
 cmd:option('-backend', 'nn', 'nn|cudnn')
-cmd:option('-batch_size', 24,'batch_size for each iterations')
+cmd:option('-batch_size', 200,'batch_size for each iterations')
 cmd:option('-rnn_model', 'GRU', 'question embedding model')
 cmd:option('-input_encoding_size', 620, 'he encoding size of each token in the vocabulary')
 cmd:option('-rnn_size',2400,'size of the rnn in number of hidden nodes in each layer')
@@ -155,9 +155,7 @@ embedding_net_q=nn.Sequential()
             :add(lookup)
             :add(nn.SplitTable(2))
 
-require 'netdef.MRN'
-require 'netdef.MCB'
-require 'netdef.MLB'
+require('netdef.'..opt.model_name)
 multimodal_net=netdef[opt.model_name](rnn_size_q,nhimage,common_embedding_size,dropout,num_layers,noutput,batch_size,glimpse)
 print(multimodal_net)
 

@@ -130,7 +130,7 @@ for i=1,sz,batch_size do
             :add(nn.Reshape(batch_size,14,14,2048,false))
             :add(nn.Transpose({3,4},{2,3}))
         l2normalizer=l2normalizer:cuda()
-        feat=l2normalizer:forward(feat):float()
+        feat=l2normalizer:forward(feat)
     end
     for j=1,r-i+1 do
         features:write(paths.basename(train_list[i+j-1]), feat[j]:float())
@@ -159,7 +159,7 @@ for i=1,sz,batch_size do
             :add(nn.Reshape(batch_size,14,14,2048,false))
             :add(nn.Transpose({3,4},{2,3}))
         l2normalizer=l2normalizer:cuda()
-        feat=l2normalizer:forward(feat):float()
+        feat=l2normalizer:forward(feat)
     end
     for j=1,r-i+1 do
        features:write(paths.basename(test_list[i+j-1]), feat[j]:float())

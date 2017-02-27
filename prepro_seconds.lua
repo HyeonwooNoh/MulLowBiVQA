@@ -9,7 +9,7 @@ require 'myutils'
 trainset={'train','val'}
 a={}
 for k,v in pairs(trainset) do
-   anno='/opt/data/coco/mscoco_'..v..'2014_annotations.json'
+   anno='data/annotations/mscoco_'..v..'2014_annotations.json'
    print('read '..anno)
    local j=readAll(anno)
    a=table.merge(a,j.annotations)

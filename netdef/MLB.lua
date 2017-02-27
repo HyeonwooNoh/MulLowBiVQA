@@ -7,7 +7,7 @@
 --Multimodal Low-rank Bilinear Attention Networks (MLB)
 --Use 1x1 convolution for dimension reduction
 function netdef.MLB(rnn_size_q,nhimage,common_embedding_size,joint_dropout,num_layers,noutput,batch_size,glimpse)
-   local p = .5  -- dropout ratio
+   local p = joint_dropout  -- dropout ratio
    local activation = 'Tanh'
    local multimodal_net=nn.Sequential()
    local glimpse=glimpse or 2

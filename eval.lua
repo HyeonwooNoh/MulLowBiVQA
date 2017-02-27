@@ -25,10 +25,14 @@ cmd:text('Test the Visual Question Answering model')
 cmd:text()
 cmd:text('Options')
 -- Data input settings
-cmd:option('-input_img_h5','data_train-val_test-dev_2k/data_res.h5','path to the h5file containing the image feature')
-cmd:option('-input_ques_h5','data_train-val_test-dev_2k/data_prepro.h5','path to the h5file containing the preprocessed dataset')
-cmd:option('-input_json','data_train-val_test-dev_2k/data_prepro.json','path to the json file containing additional info and vocab')
-cmd:option('-model_path', 'model/mrn2k.t7', 'path to a model checkpoint to initialize model weights from. Empty = don\'t')
+cmd:option('-input_img_h5','data_train-val_test-dev_2k/data_res.h5',
+			  'path to the h5file containing the image feature')
+cmd:option('-input_ques_h5','data_train-val_test-dev_2k/data_prepro.h5',
+			  'path to the h5file containing the preprocessed dataset')
+cmd:option('-input_json','data_train-val_test-dev_2k/data_prepro.json',
+			  'path to the json file containing additional info and vocab')
+cmd:option('-model_path', 'model/mrn2k.t7',
+			  'path to a model checkpoint to initialize model weights from. Empty = don\'t')
 cmd:option('-out_path', 'result/', 'path to save output json file')
 cmd:option('-out_prob', false, 'save prediction probability matrix as `model_name.t7`')
 cmd:option('-type', 'test-dev2015', 'evaluation set')
@@ -152,6 +156,8 @@ embedding_net_q=nn.Sequential()
             :add(nn.SplitTable(2))
 
 require 'netdef.MRN'
+require 'netdef.MCB'
+require 'netdef.MLB'
 multimodal_net=netdef[opt.model_name](rnn_size_q,nhimage,common_embedding_size,dropout,num_layers,noutput,batch_size,glimpse)
 print(multimodal_net)
 

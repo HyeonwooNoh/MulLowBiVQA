@@ -1,7 +1,7 @@
 require 'cbp'  -- https://github.com/jnhwkim/cbp
 
 function netdef.MCB(rnn_size_q,nhimage,common_embedding_size,joint_dropout,num_layers,noutput,batch_size,glimpse)
-   local p = .5
+   local p = joint_dropout
    local activation = 'ReLU'
    local multimodal_net=nn.Sequential()
    local glimpse=glimpse or 2

@@ -133,7 +133,7 @@ for i=1,sz,batch_size do
         feat=l2normalizer:forward(feat):float()
     end
     for j=1,r-i+1 do
-        features:write(paths.basename(train_list[i+j-1]), feat[j])
+        features:write(paths.basename(train_list[i+j-1]), feat[j]:float())
     end
     collectgarbage()
 end
@@ -162,7 +162,7 @@ for i=1,sz,batch_size do
         feat=l2normalizer:forward(feat):float()
     end
     for j=1,r-i+1 do
-       features:write(paths.basename(test_list[i+j-1]), feat[j])
+       features:write(paths.basename(test_list[i+j-1]), feat[j]:float())
     end
     collectgarbage()
 end
